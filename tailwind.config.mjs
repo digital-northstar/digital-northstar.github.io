@@ -14,6 +14,7 @@ export default {
         northtitle: '#0F1C30',
         northtitleinvert: '#FFFFFF',
       },
+      
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],
       },
