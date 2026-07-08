@@ -1,0 +1,102 @@
+---
+import Navbar from "../components/Navbar.astro";
+import '../styles/global.css';
+import { getCollection, render } from "astro:content";
+
+//const { title = "Digital Northstar", sections = [] } = Astro.props;
+const { title = "Digital Northstar" } = Astro.props;
+const year = new Date().getFullYear();
+
+
+const entries = await getCollection("pages");
+
+const sections = entries.sort((a: { data: { order: number; }; }, b: { data: { order: number; }; }) => a.data.order - b.data.order);
+---
+
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      html {
+        scroll-snap-type: y mandatory;
+      }
+      section {
+        scroll-snap-align: start;
+      }
+    </style>
+  </head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XKLY5R8TF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XKLY5R8TF');
+</script>
+
+  <body class="
+  font-sans antialiased relative
+  bg-lightbg text-lighttext
+  dark:bg-deepblue dark:text-northtext
+">
+<div class="fixed inset-0 -z-10 pointer-events-none">
+
+  <!-- subtle grid -->
+  <div class="absolute inset-0 
+              bg-[linear-gradient(to_right,rgba(122,134,153,0.05)_1px,transparent_1px),
+                  linear-gradient(to_bottom,rgba(122,134,153,0.05)_1px,transparent_1px)]
+              bg-[size:60px_60px]">
+  </div>
+
+  <!-- radial focus -->
+  <div class="absolute inset-0 
+              bg-[radial-gradient(circle_at_center,rgba(122,134,153,0.08),transparent_60%)]">
+  </div>
+
+</div>
+
+    <Navbar sections={sections} showBlog="true" />
+
+    <main class="pt-24">
+      <slot />
+    </main>
+
+    <footer class="py-8 text-center text-xs tracking-widest opacity-60">
+      © {year} Digital Northstar
+    </footer>
+
+    <!-- ACTIVE SECTION SCRIPT -->
+  <script>
+    const links = document.querySelectorAll(".nav-link");
+    const sections = document.querySelectorAll("section");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(link => {
+            link.classList.remove("opacity-100");
+            link.classList.add("opacity-60");
+
+            if (link.dataset.section === entry.target.id) {
+              link.classList.remove("opacity-60");
+              link.classList.add("opacity-100");
+            }
+          });
+        }
+      });
+    }, { threshold: 0.6 });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+
+  </body>
+</html>

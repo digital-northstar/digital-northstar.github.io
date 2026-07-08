@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BlogCard from "./BlogCard.astro";
+
+/*
+interface Props {
+  posts: Array<{
+    data: {
+      title: string;
+      description?: string;
+      publishDate: Date;
+      slug: string;
+      coverImage?: string;
+    };
+    slug: string;
+  }>;
+}
+  */
+ interface Props {
+  posts: Array<CollectionEntry<'blogposts'>>; 
+}
+
+const { posts } = Astro.props;
+
+console.log("allPosts: ", posts.map(r => r.data.slug));
+
+---
+
+<section class="mx-auto max-w-5xl px-4 py-12">
+  <h1 class="mb-8 text-4xl font-bold text-neutral-900">
+    Blog
+  </h1>
+
+  <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    {posts.map((post) => (
+      <BlogCard
+        title={post.data.title}
+        description={post.data.description}
+        publishDate={post.data.publishDate}
+        slug={post.data.slug}
+        coverImage={post.data.coverImage}
+      />
+    ))}
+  </div>
+</section>

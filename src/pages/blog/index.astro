@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import BlogSection from "../../components/blog/BlogSection.astro"
+
+const title = 'Blog';
+
+const posts = await getCollection('blogposts');
+
+let sortedPosts = posts.sort((a, b) => new Date(b.data.publishDate).valueOf() - new Date(a.data.publishDate).valueOf());
+
+---
+
+<Layout title={title} >
+    <BlogSection posts={sortedPosts} />
+</Layout>

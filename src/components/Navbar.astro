@@ -6,7 +6,7 @@ type Section = {
   };
 };
 
-const { sections = [] } = Astro.props as { sections: Section[] };
+const { sections = [], showBlog } = Astro.props as { sections: Section[], showBlog?: boolean };
 
 /*
 
@@ -36,6 +36,15 @@ const { sections = [] } = Astro.props as { sections: Section[] };
             {section.data.title}
           </a>
         ))}
+        {showBlog && (
+          <a 
+            href="/blog" 
+            class="nav-link opacity-60 hover:opacity-100 transition"
+            data-section="blog"
+          >
+            Blog
+          </a>
+        )}
     </div>
 
   </div>

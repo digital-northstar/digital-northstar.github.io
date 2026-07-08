@@ -1,0 +1,9 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='700' height='180'>
+<rect x='20' y='60' width='120' height='50' fill='white' stroke='black'/><text x='35' y='90'>Enterprise</text>
+<rect x='280' y='60' width='120' height='50' fill='white' stroke='black'/><text x='315' y='90'>Model</text>
+<line x1='140' y1='85' x2='280' y2='85' stroke='black'/>
+<rect x='520' y='10' width='150' height='35' fill='white' stroke='black'/><text x='540' y='32'>Business View</text>
+<rect x='520' y='70' width='150' height='35' fill='white' stroke='black'/><text x='540' y='92'>Solution View</text>
+<rect x='520' y='130' width='150' height='35' fill='white' stroke='black'/><text x='532' y='152'>Technology View</text>
+<line x1='400' y1='85' x2='520' y2='28' stroke='black'/><line x1='400' y1='85' x2='520' y2='88' stroke='black'/><line x1='400' y1='85' x2='520' y2='148' stroke='black'/>
+</svg>

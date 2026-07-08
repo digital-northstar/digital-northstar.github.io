@@ -1,0 +1,16 @@
+---
+import LayoutBase from "./LayoutBase.astro";
+
+const { title, pubDate } = Astro.props;
+---
+
+
+<LayoutBase  title="Digital Northstar">
+  <slot />
+</LayoutBase>
+
+<article>
+  <h1>{title}</h1>
+  <time>{pubDate.toISOString()}</time>
+  <slot />
+</article>

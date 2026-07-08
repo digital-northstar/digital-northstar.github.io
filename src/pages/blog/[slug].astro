@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+import BlogDetail from "../../components/blog/BlogDetail.astro";
+import { render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+//const posts = await getCollection("blogposts");
+//const { slug } = Astro.params;
+//const post = posts.find((p) => p.data.slug === slug);
+
+//if (!post) throw new Error(`Post not found: ${slug}`);
+
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blogposts');
+  return blogPosts.map((post) => ({
+    params: { slug: post.data.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+//console.log("In [slug].astro, blogpost: ", post);
+
+
+const { Content } = await render(post);
+
+---
+<Layout  title="Digital Northstar">
+
+    <BlogDetail
+  title={post.data.title}
+  slug={post.data.slug}
+  description={post.data.description}
+  publishDate={post.data.publishDate}
+  coverImage={post.data.coverImage}
+  tags={post.data.tags} >
+  <Content />
+</BlogDetail>
+
+</Layout>

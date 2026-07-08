@@ -5,15 +5,12 @@ import { getCollection, render } from "astro:content";
 
 const entries = await getCollection("pages");
 
-//console.log(entries);
-/*
-<pre>{JSON.stringify(sections, null, 2)}</pre>
-*/
-
 const sections = entries.sort((a: { data: { order: number; }; }, b: { data: { order: number; }; }) => a.data.order - b.data.order);
 ---
 
-<Layout sections={sections} title="Digital Northstar">
+{ /* <Layout sections={sections} title="Digital Northstar"> */}
+  
+<Layout  title="Digital Northstar">
 
   {await Promise.all(
     sections.map(async (section) => {
