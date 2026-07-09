@@ -21,11 +21,12 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 //console.log("In [slug].astro, blogpost: ", post);
 
+const title = `Digital Northstar | Blog | ${post.data.title}`;
 
 const { Content } = await render(post);
 
 ---
-<Layout  title="Digital Northstar">
+<Layout  title={title}>
 
     <BlogDetail
   title={post.data.title}
