@@ -54,6 +54,38 @@ export default defineConfig({
           },
         ],
       },
+      {
+        name: "blog",
+        label: "Blog Posts",
+        path: "src/content/blog",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "datetime",
+            name: "publishDate",
+            label: "Publish Date",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "slug",
+            label: "Slug",
+            required: true,
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Body",
+            isBody: true,
+          },
+        ],
+      }
     ],
   },
 });

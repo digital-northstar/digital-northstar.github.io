@@ -25,7 +25,7 @@ const { title, description, publishDate, slug, coverImage } = Astro.props;
     </h2>
 
     <time class="block mt-1 text-sm text-neutral-500">
-      {/* publishDate.toLocaleDateString("nl-BE")} */}
+      { publishDate.toLocaleDateString("nl-BE") }
     </time>
 
     {description && (

@@ -7,7 +7,9 @@ const title = 'Digital Northstar | Blog';
 
 const posts = await getCollection('blogposts');
 
-let sortedPosts = posts.sort((a, b) => new Date(b.data.publishDate).valueOf() - new Date(a.data.publishDate).valueOf());
+let selectedPosts = posts.filter(post => new Date(post.data.publishDate).valueOf() <= new Date().valueOf());
+
+let sortedPosts = selectedPosts.sort((a, b) => new Date(a.data.publishDate).valueOf() - new Date(b.data.publishDate).valueOf());
 
 ---
 

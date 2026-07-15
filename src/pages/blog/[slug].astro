@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-//console.log("In [slug].astro, blogpost: ", post);
+console.log("In [slug].astro, blogpost: ", post);
 
 const title = `Digital Northstar | Blog | ${post.data.title}`;
 
@@ -31,6 +31,7 @@ const { Content } = await render(post);
     <BlogDetail
   title={post.data.title}
   slug={post.data.slug}
+  episode={post.data.episode}
   description={post.data.description}
   publishDate={post.data.publishDate}
   coverImage={post.data.coverImage}
