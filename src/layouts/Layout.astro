@@ -1,9 +1,10 @@
 ---
 import LayoutBase from "./LayoutBase.astro";
 
+const { title } = Astro.props;
 
 ---
 
-<LayoutBase  title="Digital Northstar">
+<LayoutBase  title={title}>
   <slot />
 </LayoutBase>

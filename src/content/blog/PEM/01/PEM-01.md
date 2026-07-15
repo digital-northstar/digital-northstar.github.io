@@ -3,7 +3,9 @@ title: The Model Is the Truth, the Diagram Is the story
 publishDate: "2026-07-05"
 tags: ["Pragmatic Enterprise Modeling", "architecture"]
 slug: the-model-is-the-truth-the-diagram-is-the-story
+description: Architecture is telling stories that both business and IT understand and can follow. The model  maintains the truth, the diagrams  tell the stories to each audience.
 //layout: "../../layouts/BlogLayout.astro"
+episode: 1
 ---
 
 ### Episode 1 

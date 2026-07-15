@@ -22,14 +22,14 @@ const { sections = [], showBlog } = Astro.props as { sections: Section[], showBl
 
   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
 
-    <a href="#" class="text-sm tracking-widest font-semibold">
+    <a href="/#" class="text-sm tracking-widest font-semibold">
       Digital Northstar
     </a>
 
     <div class="flex gap-6 text-xs  tracking-wider uppercase">
       {sections.map((section: Section) => (
           <a 
-            href={`#${section.data.id}`} 
+            href={`/#${section.data.id}`} 
             class="nav-link opacity-60 hover:opacity-100 transition"
             data-section={section.data.id}
           >

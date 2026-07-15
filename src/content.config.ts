@@ -14,10 +14,11 @@ const pages = defineCollection({
 });
 
 const blogposts = defineCollection({
-  loader: glob({ pattern: "**/*.mdx", base: "./src/content/blog" }),
+  loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
   schema: z.object({
     title: z.string(),
     slug: z.string(),
+    episode: z.number().optional(),
     description: z.string().optional(),
     publishDate: z.coerce.date(),
     tags: z.array(z.string()).optional(),

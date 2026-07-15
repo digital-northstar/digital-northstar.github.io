@@ -1,6 +1,7 @@
 ---
 interface Props {
   title: string;
+  episode?: string;
   description?: string;
   publishDate: Date;
   coverImage?: string;
@@ -8,7 +9,7 @@ interface Props {
   tags?: string[];
 }
 
-const { title, description, publishDate, coverImage, slug, tags } = Astro.props;
+const { title, episode, description, publishDate, coverImage, slug, tags } = Astro.props;
 ---
 
 <article class="mx-auto max-w-3xl px-4 py-12">
@@ -23,12 +24,17 @@ const { title, description, publishDate, coverImage, slug, tags } = Astro.props;
   <h1 class="text-4xl font-bold text-neutral-900 mb-4">
     {title}
   </h1>
+  {episode && (
+    <h5 class="text-lg font-semibold text-neutral-700 mb-4">
+      Episode {episode}
+    </h5>
+  )}
 
   <div class="flex items-center gap-4 text-neutral-600 mb-6">
     <time class="text-sm">
-      { /*pubDate.toLocaleDateString("nl-BE")} */}
+      { publishDate.toLocaleDateString("nl-BE") }
     </time>
-
+||
     {tags && (
       <ul class="flex gap-2">
         {tags.map((tag) => (
@@ -39,12 +45,6 @@ const { title, description, publishDate, coverImage, slug, tags } = Astro.props;
       </ul>
     )}
   </div>
-
-  {description && (
-    <p class="text-lg text-neutral-700 mb-8">
-      {description}
-    </p>
-  )}
 
   <div class="prose prose-neutral max-w-none">
     <slot />
