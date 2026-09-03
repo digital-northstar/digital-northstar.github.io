@@ -1,6 +1,6 @@
 ---
 title: "Building a Common Modeling Language: repository setup"
-publishDate: "2026-07-21"
+publishDate: "2026-09-03"
 tags: ["Pragmatic Enterprise Modeling", "architecture"]
 slug: building-a-common-modeling-language-repository-setup
 description: A common modeling language needs a common repository and common rules
