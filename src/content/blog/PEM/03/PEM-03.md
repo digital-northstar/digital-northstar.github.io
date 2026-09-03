@@ -11,124 +11,77 @@ episode: 3
 
 The previous episode explained why a common modeling language is needed, and started defining a few conventions for setting up a well organized model.
 
-We discussed the need for having a single concept to explain a meaning, we discussed the need for targeted views that convey a message for an audience, and we 
-discussed the need for abstraction.
+We discussed the need for having a single concept to explain a meaning, we discussed the need for targeted views that convey a message for an audience, and we discussed the need for abstraction.
 In this episode, I'll take this one step further, as I believe a few more conventions are necessary.
 
 ## The Repository Is the Asset
 
-Architecture diagrams are often treated as the final product.
+Architecture diagrams are often treated as the final product, but I see them differently. A diagram is simply one way of looking at the model, a representation of a small subset of the whole repository content.
+The repository is where the real value lives. Every application, every capability, every business process and as well every relationship. They all exist only once.
 
-I see them differently.
-
-A diagram is simply one way of looking at the model.
-
-The repository is where the real value lives.
-
-Every application.
-
-Every capability.
-
-Every business process.
-
-Every relationship.
-
-They all exist only once.
-
-The diagram merely selects the concepts required to tell a particular story.
-
+The diagram only selects the concepts required to tell a particular story.
 This way of thinking changes how architecture evolves.
-
 Instead of creating a completely new diagram for every project, we gradually enrich the repository itself.
-
-Each new initiative contributes additional knowledge.
+Each new initiative contributes additional knowledge, but starts from the knowledge that is already available, without making a duplicate of the part that maybe makes sense in this context.
 
 Each new viewpoint reuses concepts that already exist.
-
 Over time the repository becomes a shared understanding of the enterprise rather than a collection of disconnected drawings.
 
 ## Name for Meaning
 
 Names deserve more attention than they often receive.
-
 A good name explains the role of a concept, not its current implementation.
+Technology changes, products evolve. New projects come and go, but the business purpose usually remains.
 
-Technology changes.
-
-Products evolve.
-
-Projects come and go.
-
-The business purpose usually remains.
-
-Whenever possible, I prefer names that describe *what something is* rather than *how it happens to be implemented today*.
+Whenever possible, I prefer names that describe *what something is* or *what something does* rather than *how it happens to be implemented today*.
 
 Stable names make the repository easier to understand and far easier to maintain over time.
+Whenever someone encounters an architectural diagram, one should recognise concepts because they describe the business, not because they recognise a particular technology stack or project name that makes them think of the good old times.
 
-Readers should recognise concepts because they describe the business, not because they recognise a particular technology stack or project name.
+Avoiding the usage of implementation-specific names makes the repository content recognizable and maintainable. On the other hand, the names of applications, components or capabilities must be concrete enough to bring added value. Generic names like "Component 1", "Application B" or "Artifact" do not bring the necessary details that a reader expects.
 
 ## Different Levels of Detail
 
 One question that frequently appears when discussing modeling conventions is how much detail should be included.
-
-There is no universal answer.
+There is of course no universal answer. The most accurate one is 'it depends'. I'll try to explain.
 
 The correct level of detail depends entirely on the audience and the story.
+Enterprise architecture explains how the organisation works as a whole. Its purpose is to provide direction, alignment and context.
 
-Enterprise architecture explains how the organisation works as a whole.
+* Domain architecture focuses on responsibilities, ownership and boundaries between different parts of the enterprise.
+* Solution architecture explains how a particular business need is realised through applications, integrations and technology.
+* Implementation and engineering documentation go one level deeper still, describing the internal construction of individual solutions.
 
-Its purpose is to provide direction, alignment and context.
-
-Domain architecture focuses on responsibilities, ownership and boundaries between different parts of the enterprise.
-
-Solution architecture explains how a particular business need is realised through applications, integrations and technology.
-
-Implementation and engineering documentation go one level deeper still, describing the internal construction of individual solutions.
-
-Each of these viewpoints is valuable.
-
-None of them replaces another.
-
-Problems arise when they become mixed together.
-
+Each of these viewpoints is valuable, none of them replaces another.
+Problems arise on the other hand when they become mixed together.
 A diagram intended for executive decision making quickly becomes unreadable when filled with technical implementation details.
 
 Likewise, a detailed solution design becomes frustrating when it hides important implementation decisions behind enterprise-level abstractions.
 
-Rather than trying to build one diagram that satisfies every stakeholder, I believe it is far more effective to create multiple focused viewpoints based on the same underlying model.
+Rather than trying to build one diagram that satisfies every stakeholder,
+I believe it is far more effective to create multiple focused
+viewpoints based on the same underlying model.
 
-The repository remains consistent.
-
-The story changes.
-
-That, ultimately, is one of the greatest strengths of model-based architecture.
-
-We are not creating different versions of reality.
-
-We are allowing different audiences to explore the same reality from the perspective that is most meaningful to them.
+The repository remains consistent while the story changes.
+That, ultimately, is for me one of the greatest strengths of 
+model-based architecture. 
+We are not creating different versions of reality, but we are 
+allowing different audiences to explore the same reality 
+from the perspective that is most meaningful to them.
 
 ## Organising the Repository
 
-Throughout this article I've deliberately spoken about *the repository* rather than *the diagrams*.
+Throughout this article I've deliberately spoken about *the repository* rather than *the diagrams*. That choice of words is intentional. 
+Many organisations still think of architecture as a collection of diagrams, being it in PowerPoint, Visio, a web-based diagramming tool, an architectural design tool or something else. Each project creates a few new drawings, they are presented during workshops, exported to PDF, stored somewhere in SharePoint and eventually forgotten.
 
-That choice of words is intentional.
-
-Many organisations still think of architecture as a collection of diagrams. Each project creates a few new drawings, they are presented during workshops, exported to PDF, stored somewhere in SharePoint and eventually forgotten.
-
-When the next project starts, someone opens the previous diagram, copies it, modifies it and saves it under a new name.
-
+When the next project starts, someone opens the previous diagram, copies it, modifies it and saves it under a new name. 
 Over time, nobody knows which version is the correct one.
-
-The diagrams slowly drift apart.
-
+The diagrams slowly drift apart. It's even getting worse when previous versions are updated in parallel from newer versions.
 Eventually, architects stop trusting the repository because they no longer know which information is current.
 
 In my opinion, this is one of the biggest differences between drawing diagrams and building an architecture model.
-
 The repository should become the single source of truth.
-
 Diagrams should simply become different windows on that repository.
-
 That subtle change in mindset has a profound impact on the way architecture evolves.
 
 Instead of asking:
@@ -145,188 +98,103 @@ The diagram follows naturally.
 
 Whenever possible, create architectural concepts once.
 
-Business capabilities.
+* Business capabilities.
+* Applications.
+* Business actors.
+* Technology services.
+* Interfaces.
+* Relationships.
 
-Applications.
-
-Business actors.
-
-Technology services.
-
-Interfaces.
-
-Relationships.
-
-These should all exist as reusable concepts within the repository.
-
+This list is absolutely not exhaustive, depending on your architectural landscape, you will need less or more of them. But when you need them, they should all exist as reusable concepts within the repository.
 Views simply select the subset that is relevant for the story being told.
 
 This approach has two important advantages.
 
 First, consistency becomes almost automatic.
-
 If the name of an application changes, it changes everywhere.
-
 If ownership changes, every viewpoint immediately reflects that update.
 
 Secondly, creating new viewpoints becomes significantly easier.
-
 You are no longer drawing another picture.
-
 You are simply looking at the same model from another perspective.
+You can simply choose to show components based on the already known relationships, drilling through the knowledge you built over time.
 
 That is exactly what a mature architecture repository should support.
 
 ## Keep the Repository Stable
 
-Projects come and go.
-
-Applications evolve.
-
-Technology changes.
-
-The enterprise itself changes.
+Projects come and go, applications evolve, technology changes.
+The enterprise itself changes. Change is a constant factor, you must 
+take care that the repository reflects the changes.
 
 The repository therefore needs a structure that remains stable despite those changes.
-
 One temptation I often see is organising everything around projects.
+At first this seems logical, every project has its own package, its own diagrams,
+its own documentation. Unfortunately, projects are temporary, while the
+enterprise is not.
 
-At first this seems logical.
-
-Every project has its own package.
-
-Its own diagrams.
-
-Its own documentation.
-
-Unfortunately, projects are temporary.
-
-The enterprise is not.
-
-Instead, I prefer organising repositories around stable concepts.
-
+Instead, I prefer organising repositories around stable concepts: 
 Business architecture.
-
 Application architecture.
-
 Technology architecture.
-
 Cross-cutting concepts.
-
 Views.
-
 Documentation.
 
 The exact folder structure is less important than the principle behind it.
+Organise the around the enterprise, not around today's projects.
 
-Organise around the enterprise.
-
-Not around today's projects.
-
-As projects evolve, they enrich the repository rather than fragmenting it.
+Of course, while working on a new project, you will temporarily have a state that is not fully consistent. You add new objects, try out whether a combination could work, discuss with a colleague that explains you that this is not the best way forward, ... 
+During this time, it can be an added value to have a project space. But this means that a governance process must be in place to clean your unused objects, to move the ones that you agree on for the next step, etc.
 
 ## Separate Concepts from Views
 
 One convention that has proven extremely valuable in practice is separating model content from viewpoints.
 
-Concepts represent the enterprise.
-
-Views represent conversations.
+Concepts represent the enterprise, while Views represent conversations.
 
 Those are fundamentally different things.
-
 Applications, capabilities and business processes belong to the enterprise itself.
 
-Business Landscape.
-
-Application Cooperation.
-
-Integration Overview.
-
-Capability Map.
-
-Those are viewpoints.
-
+Business Landscape, Application Cooperation, Integration Overview, 
+Capability Map are viewpoints. 
 Keeping these separate encourages reuse and discourages duplication.
 
-It also reinforces an important habit.
-
-Architects stop thinking about "drawing another diagram" and start thinking about "creating another view."
-
-That may sound like semantics.
-
-It isn't.
-
-It changes the way people work.
+It also reinforces an important habit: architects stop thinking about "drawing another diagram" and start thinking about "creating another view."
+That may sound like semantics, but it isn't. It changes the way people work.
 
 ## Documentation Belongs to the Repository
 
 Architecture is more than boxes and relationships.
 
-Every important concept carries context.
-
-Definitions.
-
-Responsibilities.
-
-Ownership.
-
-Design decisions.
-
-References.
+Every important concept carries context: definitions, responsibilities,
+ownership, design decisions, references.
 
 Instead of storing those explanations in separate Word documents or presentation slides, I prefer attaching them directly to the repository wherever possible.
-
 That way, knowledge remains connected to the architectural concepts it describes.
+When someone opens an application component six months later, they should not only see its relationships, they should understand why it exists, who is responsible, what the state is, what it is used for etc.
 
-When someone opens an application component six months later, they should not only see its relationships.
-
-They should understand why it exists.
-
-Documentation should enrich the model.
-
-Not live somewhere else.
+Documentation should enrich the model, not live somewhere else.
+Having a blueprint document that explains the story is of course valuable, but should focus on telling you the story in the order that is the easiest to be understood, not tell another story than what is in the repository.
 
 ## Start Small
 
-A common misconception is that a good repository needs to be complete before it becomes useful.
-
-I believe the opposite.
-
-The best repositories usually start surprisingly small.
-
-A handful of business capabilities.
-
-Some core applications.
-
-A few important relationships.
-
-Enough to support today's conversations.
-
-Nothing more.
+A common misconception is that a good repository needs to be complete before it becomes useful. I believe the opposite. The best repositories usually start surprisingly small. A handful of business capabilities, maybe from the part of the architectural landscape of a few core applications. A few important relationships, at least the most important ones to start. Enough to support today's conversations. Nothing more.
 
 As new initiatives arise, the repository grows naturally.
-
 Each project contributes additional knowledge.
-
 Each architecture review improves consistency.
-
 Each new viewpoint increases understanding.
-
 Architecture is therefore not a one-time exercise.
-
 It is an evolving representation of the enterprise.
-
 Trying to model everything from day one rarely succeeds.
-
 Growing the repository together with the organisation almost always does.
-
 
 ---
 
 ## Convention Summary
 
-Before we continue with the rest of this series, let us briefly summarise the principles introduced in this article for defining
+Before we continue with the rest of this series, let us briefly summarise the principles introduced in this and the [previous article](/blog/building-a-common-modeling-language) for defining
 a Common Modeling Language.
 
 These conventions are intentionally simple. Their purpose is not to define a complete modeling standard, their purpose is to help 
@@ -356,54 +224,30 @@ architecture teams communicate consistently.
 - **Consistency Beats Completeness**  
   A smaller, consistently applied modeling language is often more valuable than using every available concept and relationship.
 
-These principles will appear repeatedly throughout the remainder of this series.
-
-Not because they are rules that should never be broken.
-
-But because they create a common language that allows architects to collaborate effectively.
-
 ---
 
 ## Conclusion
 
-When people first encounter architecture modeling, they often assume the challenge lies in learning the notation.
-
-Learning ArchiMate.
-
-Learning the tool.
-
-Learning the relationships.
+When people first encounter architecture modeling, they often assume the challenge lies in learning the notation: Learning ArchiMate, learning the tool,
+learning the different relationships.
 
 In my experience, that is actually the easy part.
-
 The real challenge begins when several architects start building one shared repository.
-
 That is where consistency becomes more important than individual preference.
-
 That is where conventions become an enabler rather than a restriction.
-
 And that is where architecture gradually changes from a collection of diagrams into a shared understanding of the enterprise.
 
-A successful repository is therefore not measured by the number of elements it contains.
+A successful repository is therefore not measured by the number of elements it contains, nor by the number of diagrams it produces. Its value lies in the conversations it enables, in the common understanding that it brings for a team, the stakeholders and the enterprise as a whole.
 
-Nor by the number of diagrams it produces.
+The repository brings value if new architects can quickly become productive, 
+if stakeholders recognise the stories being told, 
+if projects can build upon existing knowledge instead of starting from scratch.
 
-Its value lies in the conversations it enables.
-
-If new architects can quickly become productive…
-
-If stakeholders recognise the stories being told…
-
-If projects can build upon existing knowledge instead of starting from scratch…
-
-Then the repository has achieved its purpose.
-
+That is exactly the moment when the repository has achieved its purpose.
 That is the kind of architecture I hope to promote throughout this series.
+Not architecture for architects, but architecture that helps organisations make better decisions.
 
-Not architecture for architects.
-
-Architecture that helps organisations make better decisions.
-
+<!--
 ---
 
 ## Looking Ahead
@@ -421,3 +265,5 @@ From that point onwards, every episode will extend the same repository.
 Not by creating isolated diagrams, but by adding another piece to the larger story of the enterprise.
 
 That, ultimately, is what Pragmatic Enterprise Modeling is all about.
+
+-->
