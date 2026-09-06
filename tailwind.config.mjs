@@ -8,11 +8,21 @@ export default {
       colors: {
         deepblue: '#0F1C30',
         northtext: '#7A8699',
-        lightbg: '#F5F7FA',
+        northtextinvert: '#9e9b9c',
+        northtextaccent: '#2b2f35',
+        northtextaccentinvert: '#bbb7ce',
+        northtextnav: '#2b2f35',
+        northtextnavinvert: '#bbb7ce',
+        northbg: '#dee4ec',
+        northbginvert: '#929396',
+        northbgaccent: '#bdbfc5',
+        northbgaccentinvert: '#555861',
+        northbgnav: '#929396',
+        northbgnavinvert: '#555861',
         lighttext: '#1C2430',
         brightred: '#FF4C60',
         northtitle: '#0F1C30',
-        northtitleinvert: '#FFFFFF',
+        northtitleinvert: '#cfcee2',
       },
       
       fontFamily: {
@@ -55,7 +65,7 @@ export default {
         
         invert: {
           css: {
-            color: theme('colors.northtext'),
+            color: theme('colors.northtextinvert'),
       
             h1: {
               color: theme('colors.northtitleinvert'),
