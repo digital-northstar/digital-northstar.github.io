@@ -1,6 +1,6 @@
 ---
 title: "Setting up an Architecture Repository in Archi"
-publishDate: "2026-09-10"
+publishDate: "2026-09-23"
 tags: ["Pragmatic Enterprise Modeling", "architecture"]
 slug: setting-up-an-architecture-repository-in-archi
 description: Setting up an Architecture Repository in Archi
