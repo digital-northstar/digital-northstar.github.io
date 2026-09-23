@@ -35,6 +35,7 @@ console.log("allPosts: ", posts.map(r => r.data.slug));
     {posts.map((post) => (
       <BlogCard
         title={post.data.title}
+        episode={post.data.episode}
         description={post.data.description}
         publishDate={post.data.publishDate}
         slug={post.data.slug}

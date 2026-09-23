@@ -1,13 +1,14 @@
 ---
 interface Props {
   title: string;
+  episode?: number;
   description?: string;
   publishDate: Date;
   slug: string;
   coverImage?: string;
 }
 
-const { title, description, publishDate, slug, coverImage } = Astro.props;
+const { title, episode, description, publishDate, slug, coverImage } = Astro.props;
 ---
 
 <article class="group rounded-xl border border-northbgaccent/20 bg-northbgaccent dark:bg-northbgaccentinvert p-5 shadow-sm transition hover:shadow-md">
@@ -23,6 +24,12 @@ const { title, description, publishDate, slug, coverImage } = Astro.props;
     <h2 class="text-xl font-semibold text-northtextaccent dark:text-northtextaccentinvert group-hover:text-neutral-700">
       {title}
     </h2>
+
+    {episode && (
+      <p class="mt-1 text-sm font-semibold text-northtextaccent/70 dark:text-northtextaccentinvert/70">
+        Episode {episode}
+      </p>
+    )}
 
     <time class="block mt-1 text-sm text-northtextaccent/50 dark:text-northtextaccentinvert/50 ">
       { publishDate.toLocaleDateString("nl-BE") }

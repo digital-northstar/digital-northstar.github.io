@@ -9,7 +9,7 @@ const posts = await getCollection('blogposts');
 
 let selectedPosts = posts.filter(post => new Date(post.data.publishDate).valueOf() <= new Date().valueOf());
 
-let sortedPosts = selectedPosts.sort((a, b) => new Date(a.data.publishDate).valueOf() - new Date(b.data.publishDate).valueOf());
+let sortedPosts = selectedPosts.sort((a, b) => new Date(b.data.publishDate).valueOf() - new Date(a.data.publishDate).valueOf());
 
 ---
 
