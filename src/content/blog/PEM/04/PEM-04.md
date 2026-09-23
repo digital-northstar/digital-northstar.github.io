@@ -24,7 +24,9 @@ information, where I would put it, and, most importantly, how I would
 avoid turning the repository into a collection of disconnected diagrams.
 
 The example is based on **GridFlow Transmission**, our fictional energy
-transmission company. It is deliberately small. A useful architecture
+transmission company. The model is deliberately small, definitely not
+representing the full Enterprise Architecture one would expect from an energy
+transmission operator company. A useful architecture
 repository does not need hundreds of elements before it becomes
 valuable; it needs a few well-defined concepts that can be reused
 consistently.
@@ -40,7 +42,9 @@ knowledge do we want to maintain?**
 
 For GridFlow, we will initially keep this deliberately simple:
 
--   **Business** --- the stable concepts that describe how the
+-   **Strategy** --- the stable concepts that describe the capabilities
+    needed to operate the organization.
+-   **Business** --- the processes that describe how the
     organization operates.
 -   **Application** --- the applications and application services that
     support the business.
@@ -69,6 +73,9 @@ opened it for the first time.
 
 A simple structure is often enough:
 
+
+![Basic folder structure of](folder-hierarchy.jpg)
+<!--
 ``` text
 GridFlow Transmission
 │
@@ -85,10 +92,13 @@ GridFlow Transmission
 │
 └── Views
 ```
+-->
 
 This is not a universal structure, and I would not spend days trying to
 find the perfect hierarchy. The purpose is to make it obvious where a
-concept belongs and to make browsing the repository predictable.
+concept belongs and to make browsing the repository predictable. Reorganizing
+parts of the elements and folders in the repository will still happen.
+Just don't loose too much time on this organisation yet.
 
 There is also an important distinction between **packages and views**. A
 package tells us where a concept is maintained. A view tells us where
@@ -107,7 +117,10 @@ it is being used.**
 
 For example, if GridFlow has an application responsible for managing
 outages, I would call it `Outage Management`, not
-`Outage Management — Project Phoenix` or `New OMS 2027`.
+`Outage Management — Project Phoenix` or `New OMS 2027`. And even if it's an
+idea pitched to management to replace the legacy Outage Management tool,
+and the initial referrals were `Outage Management 2.0`, it's rare that this
+is the best name.
 
 The same applies to capabilities, processes and assets. Avoid
 unnecessary abbreviations, inconsistent capitalization and names that
@@ -120,7 +133,9 @@ convention. If one architect creates `Asset Management`, another creates
 three concepts that may or may not mean the same thing.
 
 That is exactly the kind of ambiguity a modeling convention should
-prevent.
+prevent. Having such ambiguity leads to uncertainty in reusing the element,
+and it could even hint into "it's common to each have our own element", which
+is not advised at all.
 
 ## The repository is not a collection of diagrams
 
@@ -153,7 +168,7 @@ Let's make the example a little more concrete.
 GridFlow operates a transmission network containing assets such as
 substations, transformers and transmission lines. These assets need to
 be maintained throughout their lifecycle. Maintenance activities are
-organized as **works**, and certain works can only be performed when the
+organized as **works**, and most works can only be performed when the
 relevant asset is safely taken out of service.
 
 That creates a useful relationship between three areas of the business:
@@ -166,6 +181,8 @@ performed on those assets.
 
 **Outage Management** plans and coordinates the outage required to make
 an asset safely available for the work.
+
+![Capability Listing](capability-listing.png)
 
 Now imagine a work order for replacing a component in a transformer. The
 work refers to a specific asset. Before the work can start, an outage
@@ -184,7 +201,7 @@ show the **application landscape** supporting those activities.
 The same `Asset`, `Work` and `Outage` concepts can therefore appear in
 different stories without being duplicated.
 
-That is the real value of reuse: not saving yourself a few clicks when
+That is the real value of reuse: not saving yourself a few clicks whenx
 drawing a diagram, but maintaining a consistent body of architectural
 knowledge that can be looked at from different perspectives.
 
@@ -198,22 +215,27 @@ Views are where we turn the model into something people can understand.
 For our initial GridFlow repository, I would start with only a few
 views:
 
-### Business capability map
+### Business capability map overview
 
 The first view gives a high-level picture of what GridFlow needs to be
 capable of doing as an organization. It should be useful to someone
 discussing the business rather than someone configuring an application.
 
-### Asset and work management view
+![Capability Map Overview](capability-map-overview.png)
+
+### Asset, work and outage management view
 
 The second view zooms in on a particular business area. It can show how
 assets, works and outages relate to one another, making the operational
-story visible.
+story visible. Next to having a view on the business processes, I believe
+it's necessary to indicate the business information concepts that play
+a role in this domain. Clearly indicating the concepts and how they relate
+opens the way to a more clean applicative split.
 
 ### Application landscape
 
 The third view moves from business concepts towards the applications
-that support them. It might show `Asset Management`, `Work Management`,
+that support them. It might show `Asset Record Management`, `Work Management`,
 `Outage Management` and their important relationships.
 
 The important thing is that these views do not contain three independent
@@ -294,7 +316,7 @@ applying them consistently.
 
 ## Downloads
 
-To make this episode practical, the accompanying download will contain
+To make this episode practical, the [accompanying download](https://github.com/digital-northstar/pragmatic-enterprise-modeling/releases/tag/PEM-04) will contain
 the small **GridFlow Transmission** example repository used throughout
 the article, together with the example views and a short README
 explaining how the model is organized.
