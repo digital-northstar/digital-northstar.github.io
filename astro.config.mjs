@@ -16,6 +16,11 @@ export default defineConfig({
   base: '/',
   output: 'static',
   integrations: [mdx(), tailwind()],
-
-
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'nl'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 });

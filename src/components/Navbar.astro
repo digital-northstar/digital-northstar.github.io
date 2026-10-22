@@ -1,4 +1,6 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n";
+
 type Section = {
   data: {
     id: string;
@@ -6,14 +8,11 @@ type Section = {
   };
 };
 
-const { sections = [], showBlog } = Astro.props as { sections: Section[], showBlog?: boolean };
-
-/*
-
-      <a href="#over" class="hover:opacity-60 transition">OVER</a>
-      <a href="#diensten" class="hover:opacity-60 transition">DIENSTEN</a>
-      <a href="#contact" class="hover:opacity-60 transition">CONTACT</a>
-*/
+const { sections = [], locale = "en", showBlog } = Astro.props as {
+  sections: Section[];
+  locale: "en" | "nl";
+  showBlog?: boolean;
+};
 ---
 
 <nav class="fixed top-0 w-full z-50 backdrop-blur-md text-northtextnav dark:text-northtextnavinvert
@@ -22,14 +21,14 @@ const { sections = [], showBlog } = Astro.props as { sections: Section[], showBl
 
   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
 
-    <a href="/#" class="text-sm tracking-widest font-semibold">
+    <a href={getRelativeLocaleUrl(locale)} class="text-sm tracking-widest font-semibold">
       Digital Northstar
     </a>
 
     <div class="flex gap-6 text-xs  tracking-wider uppercase">
       {sections.map((section: Section) => (
           <a 
-            href={`/#${section.data.id}`} 
+            href={`${getRelativeLocaleUrl(locale)}#${section.data.id}`}
             class="nav-link opacity-60 hover:opacity-100 transition"
             data-section={section.data.id}
           >
@@ -38,13 +37,35 @@ const { sections = [], showBlog } = Astro.props as { sections: Section[], showBl
         ))}
         {showBlog && (
           <a 
-            href="/blog" 
+            href={getRelativeLocaleUrl("en", "blog")}
             class="nav-link opacity-60 hover:opacity-100 transition"
             data-section="blog"
           >
             Blog
           </a>
         )}
+        <div
+          class="flex gap-2 border-l border-current/20 pl-4"
+          role="group"
+          aria-label={locale === "nl" ? "Taal" : "Language"}
+        >
+          <a
+            href={getRelativeLocaleUrl("en")}
+            lang="en"
+            aria-current={locale === "en" ? "page" : undefined}
+            class:list={["opacity-60 hover:opacity-100 transition", { "opacity-100": locale === "en" }]}
+          >
+            EN
+          </a>
+          <a
+            href={getRelativeLocaleUrl("nl")}
+            lang="nl"
+            aria-current={locale === "nl" ? "page" : undefined}
+            class:list={["opacity-60 hover:opacity-100 transition", { "opacity-100": locale === "nl" }]}
+          >
+            NL
+          </a>
+        </div>
     </div>
 
   </div>

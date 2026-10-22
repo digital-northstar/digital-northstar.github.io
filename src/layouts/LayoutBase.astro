@@ -1,20 +1,16 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import '../styles/global.css';
-import { getCollection, render } from "astro:content";
+import { getPageSections } from "../utils/pages";
 
-//const { title = "Digital Northstar", sections = [] } = Astro.props;
-const { title = "Digital Northstar" } = Astro.props;
+const { title = "Digital Northstar", locale = Astro.currentLocale ?? "en" } = Astro.props;
 const year = new Date().getFullYear();
 
-
-const entries = await getCollection("pages");
-
-const sections = entries.sort((a: { data: { order: number; }; }, b: { data: { order: number; }; }) => a.data.order - b.data.order);
+const sections = await getPageSections(locale);
 ---
 
 <!DOCTYPE html>
-<html lang="nl" class="scroll-smooth">
+<html lang={locale} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -64,7 +60,7 @@ const sections = entries.sort((a: { data: { order: number; }; }, b: { data: { or
 
 </div>
 
-    <Navbar sections={sections} showBlog="true" />
+    <Navbar sections={sections} locale={locale} showBlog={true} />
 
     <main class="pt-24">
       <slot />

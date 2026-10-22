@@ -1,0 +1,40 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/Section.astro";
+import { getPageSections } from "../../utils/pages";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("pages");
+  const locales = new Set(
+    entries
+      .map((entry) => entry.id.split("/")[0])
+      .filter((locale) => locale !== "en"),
+  );
+
+  return [...locales].map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+if (!locale) {
+  throw new Error("A locale is required for this page.");
+}
+
+const sections = await getPageSections(locale);
+---
+
+<Layout title="Digital Northstar" locale={locale}>
+  {await Promise.all(
+    sections.map(async (section) => {
+      const { Content } = await render(section);
+
+      return (
+        <Section id={section.data.id}>
+          <div class="prose dark:prose-invert max-w-none">
+            <Content />
+          </div>
+        </Section>
+      );
+    })
+  )}
+</Layout>

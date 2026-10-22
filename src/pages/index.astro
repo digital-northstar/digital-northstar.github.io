@@ -1,16 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
-import { getCollection, render } from "astro:content";
+import { render } from "astro:content";
+import { getPageSections } from "../utils/pages";
 
-const entries = await getCollection("pages");
-
-const sections = entries.sort((a: { data: { order: number; }; }, b: { data: { order: number; }; }) => a.data.order - b.data.order);
+const sections = await getPageSections("en");
 ---
 
-{ /* <Layout sections={sections} title="Digital Northstar"> */}
-  
-<Layout  title="Digital Northstar">
+<Layout title="Digital Northstar" locale="en">
 
   {await Promise.all(
     sections.map(async (section) => {
@@ -27,5 +24,4 @@ const sections = entries.sort((a: { data: { order: number; }; }, b: { data: { or
   )}
 
 </Layout>
-
 
